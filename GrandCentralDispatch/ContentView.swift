@@ -52,40 +52,52 @@ struct ContentView: View {
         DispatchQueue.global(qos: .userInteractive).async {
             let out = "1 - High: .userInteractive"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         // Default
         DispatchQueue.global(qos: .userInitiated).async {
             let out = "2 - Default: .userInitiated"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         DispatchQueue.global(qos: .default).async {
             let out = ".default"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         // Low
         DispatchQueue.global(qos: .utility).async {
             let out = "3 - Low: .utility"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         // Background
         DispatchQueue.global(qos: .background).async {
             let out = "4 - In Background: .background"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         DispatchQueue.global(qos: .unspecified).async {
             let out = ".unspecified"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
     }
     
@@ -94,40 +106,52 @@ struct ContentView: View {
         DispatchQueue.global(qos: .userInteractive).sync {
             let out = "1 - High: .userInteractive"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         // Default
         DispatchQueue.global(qos: .userInitiated).sync {
             let out = "2 - Default: .userInitiated"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         DispatchQueue.global(qos: .default).sync {
             let out = ".default"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         // Low
         DispatchQueue.global(qos: .utility).sync {
             let out = "3 - Low: .utility"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         // Background
         DispatchQueue.global(qos: .background).sync {
             let out = "4 - In Background: .background"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
         
         DispatchQueue.global(qos: .unspecified).sync {
             let out = ".unspecified"
             print(out)
-            self.myArray.append(out)
+            DispatchQueue.main.async {
+                self.myArray.append(out)
+            }
         }
     }
 }
