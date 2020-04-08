@@ -9,17 +9,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var myArray = [String]()
+    
     var body: some View {
         VStack {
             Button(action: {
+                self.myArray = []
                 self.doItInGlobalAsync()
             }) {
                 Text("GCD async")
+                    .foregroundColor(.green)
+                    .font(.largeTitle)
+                    .padding()
             }
             Button(action: {
+                self.myArray = []
                 self.doItInGlobalSync()
             }) {
                 Text("GCD sync")
+                    .foregroundColor(.green)
+                    .font(.largeTitle)
+                    .padding()
+            }
+            if self.myArray != [] {
+                ForEach(self.myArray, id: \.self) { item in
+                    Text(item)
+                }.padding()
+            }
+            Button(action: {
+                self.myArray = []
+            }) {
+                Image(systemName: "arrow.uturn.left.circle")
+                    .foregroundColor(.red)
+                    .font(.largeTitle)
+                    .padding()
             }
         }.padding()
     }
@@ -27,60 +50,84 @@ struct ContentView: View {
     func doItInGlobalAsync() {
         // High
         DispatchQueue.global(qos: .userInteractive).async {
-            print("1 - High: .userInteractive")
+            let out = "1 - High: .userInteractive"
+            print(out)
+            self.myArray.append(out)
         }
         
         // Default
         DispatchQueue.global(qos: .userInitiated).async {
-            print("2 - Default: .userInitiated")
+            let out = "2 - Default: .userInitiated"
+            print(out)
+            self.myArray.append(out)
         }
         
         DispatchQueue.global(qos: .default).async {
-            print(".default")
+            let out = ".default"
+            print(out)
+            self.myArray.append(out)
         }
         
         // Low
         DispatchQueue.global(qos: .utility).async {
-            print("3 - Low: .utility")
+            let out = "3 - Low: .utility"
+            print(out)
+            self.myArray.append(out)
         }
         
         // Background
         DispatchQueue.global(qos: .background).async {
-            print("4 - In Background: .background")
+            let out = "4 - In Background: .background"
+            print(out)
+            self.myArray.append(out)
         }
         
         DispatchQueue.global(qos: .unspecified).async {
-            print(".unspecified")
+            let out = ".unspecified"
+            print(out)
+            self.myArray.append(out)
         }
     }
     
     func doItInGlobalSync() {
         // High
         DispatchQueue.global(qos: .userInteractive).sync {
-            print("1 - High: .userInteractive")
+            let out = "1 - High: .userInteractive"
+            print(out)
+            self.myArray.append(out)
         }
         
         // Default
         DispatchQueue.global(qos: .userInitiated).sync {
-            print("2 - Default: .userInitiated")
+            let out = "2 - Default: .userInitiated"
+            print(out)
+            self.myArray.append(out)
         }
         
         DispatchQueue.global(qos: .default).sync {
-            print(".default")
+            let out = ".default"
+            print(out)
+            self.myArray.append(out)
         }
         
         // Low
         DispatchQueue.global(qos: .utility).sync {
-            print("3 - Low: .utility")
+            let out = "3 - Low: .utility"
+            print(out)
+            self.myArray.append(out)
         }
         
         // Background
         DispatchQueue.global(qos: .background).sync {
-            print("4 - In Background: .background")
+            let out = "4 - In Background: .background"
+            print(out)
+            self.myArray.append(out)
         }
         
         DispatchQueue.global(qos: .unspecified).sync {
-            print(".unspecified")
+            let out = ".unspecified"
+            print(out)
+            self.myArray.append(out)
         }
     }
 }
